@@ -36,13 +36,6 @@ let TaskList = React.createClass({
 
         </thead>
         <tbody>
-          <tr>
-            <td>1</td>
-            <td>Footer</td>
-            <td>changer le texte</td>
-            <td><Input type="checkbox" /></td>
-            <td><Input type="checkbox" /></td>
-          </tr>
           {tasks.map(task =>
               <Task task={task} key={task.id} />
           )}

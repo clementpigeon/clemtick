@@ -3,6 +3,9 @@ const TodoStore = require('../stores/TodoStore');
 const ActionCreator = require('../actions/TodoActionCreators');
 const Button = require('react-bootstrap/lib/Button');
 const TaskList = require('./TaskList.jsx');
+const Topbar = require('./Topbar.jsx');
+const TaskDetailView = require('./TaskDetailView.jsx');
+
 
 let App = React.createClass({
 
@@ -38,7 +41,7 @@ let App = React.createClass({
     TodoStore.removeChangeListener(this._onChange);
   },
 
-  handleAddNewClick(e) {
+  handleCreateNewItem(e) {
     let title = prompt('Enter task title:');
     if (title) {
       ActionCreator.addItem(title);
@@ -53,12 +56,19 @@ let App = React.createClass({
     var tasks = this.state.tasks;
     return (
       <div className="container">
-        <h1>Tickets</h1>
-
-        <TaskList tasks={tasks} />
-
-        <Button onClick={this.handleAddNewClick} bsStyle="primary">Add New</Button>
-        <Button onClick={this.handleClearListClick} bsStyle="danger">Clear List</Button>
+        <div className="row">
+          <div className="col-sm-12">
+            <Topbar handleCreateNewItem={this.handleCreateNewItem}></Topbar>
+          </div>
+        </div>
+        <div className="row">
+          <div className="col-sm-9">
+            <TaskList tasks={tasks} />
+          </div>
+          <div className="col-sm-3">
+            <TaskDetailView />
+          </div>
+        </div>
       </div>
     );
   }
