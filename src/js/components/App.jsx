@@ -2,14 +2,27 @@ const React = require('react');
 const TodoStore = require('../stores/TodoStore');
 const ActionCreator = require('../actions/TodoActionCreators');
 const Button = require('react-bootstrap/lib/Button');
-const Jumbotron = require('react-bootstrap/lib/Jumbotron');
 const TaskList = require('./TaskList.jsx');
 
 let App = React.createClass({
 
   getInitialState() {
+    var first_task = {
+      id: 'MB-1',
+      section: "home page",
+      description: "logo pas aligné",
+      details: "déplacer 5 px à droite",
+      priority: 3,
+      completed: true,
+      verified: false,
+      comments : [],
+      file_url: null,
+      reporter: "clement",
+      created: Date.now()
+    };
+
     return {
-      tasks: []
+      tasks: [first_task]
     }
   },
 
@@ -37,16 +50,10 @@ let App = React.createClass({
   },
 
   render() {
-    let {tasks} = this.state;
+    var tasks = this.state.tasks;
     return (
       <div className="container">
-        <Jumbotron>
-          <h1>Learning Flux</h1>
-          <p>
-            Below is a list of tasks you can implement to better grasp the patterns behind Flux.<br />
-            Most features are left unimplemented with clues to guide you on the learning process.
-          </p>
-        </Jumbotron>
+        <h1>Tickets</h1>
 
         <TaskList tasks={tasks} />
 

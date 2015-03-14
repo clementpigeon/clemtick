@@ -1,7 +1,8 @@
 const React = require('react');
 const Task = require('./Task.jsx');
-const ListGroup = require('react-bootstrap/lib/ListGroup');
+const Table = require('react-bootstrap/lib/Table');
 const Alert = require('react-bootstrap/lib/Alert');
+const Input = require('react-bootstrap/lib/Input');
 
 let TaskList = React.createClass({
   getDefaultProps() {
@@ -11,7 +12,8 @@ let TaskList = React.createClass({
   },
 
   render() {
-    let {tasks} = this.props;
+    //let {tasks} = this.props;
+    var tasks = this.props.tasks;
 
     if (tasks.length === 0) {
       return (
@@ -22,13 +24,30 @@ let TaskList = React.createClass({
     }
 
     return (
-      <form>
-        <ListGroup>
+      <Table striped bordered condensed hover>
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Page/section</th>
+            <th>Description</th>
+            <th>Complété</th>
+            <th>Validé</th>
+          </tr>
+
+        </thead>
+        <tbody>
+          <tr>
+            <td>1</td>
+            <td>Footer</td>
+            <td>changer le texte</td>
+            <td><Input type="checkbox" /></td>
+            <td><Input type="checkbox" /></td>
+          </tr>
           {tasks.map(task =>
-            <Task task={task} />
+              <Task task={task} key={task.id} />
           )}
-        </ListGroup>
-      </form>
+        </tbody>
+      </Table>
     );
   }
 });
